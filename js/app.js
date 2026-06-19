@@ -26,9 +26,7 @@ async function loadJSON(path) {
     return res.json();
 }
 
-// Função auxiliar para carregar produtos (API REST ou JSON)
 async function loadProductsData() {
-    // Tenta usar API REST primeiro
     if (typeof DB !== 'undefined') {
         try {
             return await DB.getProducts();
@@ -36,23 +34,39 @@ async function loadProductsData() {
             console.warn('Erro ao carregar produtos da API, usando JSON', e);
         }
     }
-    // Fallback para JSON
     return await loadJSON('/data/products.json');
 }
 
-// Função auxiliar para carregar receitas (API REST ou JSON)
-async function loadRecipesData() {
-    // Tenta usar API REST primeiro
-    if (typeof DB !== 'undefined') {
-        try {
-            return await DB.getRecipes();
-        } catch (e) {
-            console.warn('Erro ao carregar receitas da API, usando JSON', e);
-        }
-    }
-    // Fallback para JSON
-    return await loadJSON('/data/recipes.json');
+function renderProductCard(p){
+  const image = (p.image && p.image.trim()) ? p.image : FALLBACK_IMAGE;
+  const tags = (p.tags||[]).map(
+    t=>`<span class="chip"><i data-lucide="tag"></i>${t}</span>`
+  ).join('');
+  const idAttr = String(p.id).replace(/"/g, '&quot;');
+  return `
+    <article class="card h-full">
+      <img src="${image}" alt="${p.name}" class="w-full aspect-[4/3] object-cover" onerror="this.src='${FALLBACK_IMAGE}';this.onerror=null;">
+      <div class="p-4 flex flex-col flex-1">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="font-semibold flex items-center gap-2 min-w-0">
+            <i data-lucide="${p.category==='Bebida' ? 'cup-soda' : 'sandwich'}"></i><span class="truncate">${p.name}</span>
+          </h3>
+          <span style="color:var(--pf-blue-dark)" class="font-bold shrink-0">
+            ${currency(p.price)}
+          </span>
+        </div>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <span class="chip"><i data-lucide="layers"></i>${p.category}</span>
+          ${tags}
+        </div>
+        <button type="button" class="btn mt-auto w-full justify-center text-sm" data-add-to-cart data-product-id="${idAttr}">
+          <span class="sm:hidden">Adicionar</span><span class="hidden sm:inline">Adicionar ao carrinho</span>
+        </button>
+      </div>
+    </article>
+  `;
 }
+
 function initMobileMenu(){
   const toggle = document.getElementById('mobile-menu-toggle');
   const drawer = document.getElementById('mobile-menu');
@@ -144,7 +158,7 @@ function highlightActiveNav(){
   if (!page) return;
   $$('[data-nav]').forEach(link => {
     const isActive = link.dataset.nav === page;
-    link.classList.toggle('text-fl-green', isActive);
+    link.classList.toggle('text-pf-blueDark', isActive);
     link.classList.toggle('font-semibold', isActive);
     if (isActive) {
       link.setAttribute('aria-current', 'page');
@@ -154,68 +168,12 @@ function highlightActiveNav(){
   });
 }
 
-function renderProductCard(p){
-  const image = (p.image && p.image.trim()) ? p.image : FALLBACK_IMAGE;
-  const tags = (p.tags||[]).map(
-    t=>`<span class="chip"><i data-lucide="tag"></i>${t}</span>`
-  ).join('');
-  return `
-    <article class="card">
-      <img src="${image}" alt="${p.name}" class="w-full aspect-[4/3] object-cover" onerror="this.src='${FALLBACK_IMAGE}';this.onerror=null;">
-      <div class="p-4">
-        <div class="flex items-center justify-between">
-          <h3 class="font-semibold flex items-center gap-2">
-            <i data-lucide="${p.category==='Bebida' ? 'cup-soda' : 'sandwich'}"></i>${p.name}
-          </h3>
-          <span style="color:var(--fl-green)" class="font-bold">
-            ${currency(p.price)}
-          </span>
-        </div>
-        <div class="mt-2 flex flex-wrap gap-2">
-          <span class="chip"><i data-lucide="layers"></i>${p.category}</span>
-          ${tags}
-        </div>
-      </div>
-    </article>
-  `;
-}
-
-function renderRecipeCard(r){
-  const image = (r.image && r.image.trim()) ? r.image : FALLBACK_IMAGE;
-  return `
-    <article class="card">
-      <img src="${image}" alt="${r.title}" class="w-full aspect-[4/3] object-cover" onerror="this.src='${FALLBACK_IMAGE}';this.onerror=null;">
-      <div class="p-4">
-        <h3 class="font-semibold flex items-center gap-2">
-          <i data-lucide="chef-hat"></i>${r.title}
-        </h3>
-        <p class="text-sm text-black/60 mt-1 flex items-center gap-2">
-          <i data-lucide="timer"></i> ${r.time} min • <i data-lucide="users"></i> ${r.servings} ${r.servings > 1 ? 'porções' : 'porção'}
-        </p>
-        ${r.kcal ? `<p class="text-sm text-black/70 mt-1 flex items-center gap-2">
-          <i data-lucide="flame"></i> ${r.kcal} kcal • <i data-lucide="beef"></i> ${r.protein_g||0} g proteína
-        </p>` : ''}
-        <details class="mt-3 text-sm">
-          <summary class="cursor-pointer" style="color:var(--fl-green)">
-            Passos
-          </summary>
-          <ol class="list-decimal pl-5 mt-2">
-            ${(r.steps||[]).map(s=>`<li class="mb-1">${s}</li>`).join('')}
-          </ol>
-        </details>
-      </div>
-    </article>
-  `;
-}
-
-
 function refreshIcons() {
   loadLucide().then(() => {
     try { window.lucide && window.lucide.createIcons(); } catch (e) { }
   });
 }
 
-// Chame após cada render:
 async function initHome() {
     const box = document.getElementById('home-best');
     if (!box) return;
@@ -232,6 +190,11 @@ async function initMenu() {
     const search = document.querySelector('#search');
 
     const data = (await loadProductsData()).filter(p => p.active !== false);
+
+    if (typeof window.ProjetoFlowCart !== 'undefined' && window.ProjetoFlowCart.setCatalog) {
+        window.ProjetoFlowCart.setCatalog(data);
+    }
+
     const categories = [...new Set(data.map(p => p.category))];
     categories.forEach(c => {
         sel.insertAdjacentHTML('beforeend', `<option value="${c}">${c}</option>`);
@@ -250,16 +213,15 @@ async function initMenu() {
     }
     sel.addEventListener('change', apply);
     search.addEventListener('input', apply);
+    grid.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-add-to-cart]');
+        if (!btn || !grid.contains(btn)) return;
+        const id = btn.getAttribute('data-product-id');
+        if (id != null && window.ProjetoFlowCart && window.ProjetoFlowCart.addById) {
+            window.ProjetoFlowCart.addById(id);
+        }
+    });
     apply();
 }
 
-async function initRecipes() {
-    if (document.body.dataset.page !== 'recipes') return;
-    const grid = document.querySelector('#recipes-grid');
-    const data = await loadRecipesData();
-    grid.innerHTML = data.map(renderRecipeCard).join('');
-    refreshIcons();
-}
-
-initMobileMenu(); highlightActiveNav(); initHome(); initMenu(); initRecipes(); refreshIcons();
-
+initMobileMenu(); highlightActiveNav(); initHome(); initMenu(); refreshIcons();

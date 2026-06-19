@@ -4,14 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Flow Fitness — Lanches proteicos & bebidas funcionais</title>
+    <title>Projeto Flow — Emagreça com leveza e constância</title>
     <meta name="description"
-        content="Lanches proteicos e bebidas funcionais para saúde, bem-estar e treino. Cardápio e receitas Flow." />
-    <meta property="og:title" content="Flow Fitness" />
-    <meta property="og:description" content="Cardápio e receitas Flow." />
+        content="Emagreça com leveza e constância com o método METABOLIC. Inscrição aberta no Projeto Flow." />
+    <meta property="og:title" content="Projeto Flow" />
+    <meta property="og:description" content="Emagreça com leveza e constância — método METABOLIC." />
     <meta property="og:image" content="/assets/logo.png" />
     <link rel="icon" type="image/png" href="/assets/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap"
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -19,17 +19,16 @@
             theme: {
                 extend: {
                     colors: {
-                        fp: {
-                            green: '#1D6B3A',
-                            green2: '#2F9D57',
-                            orange: '#F57C00',
-                            ink: '#0E1F16',
-                            fog: '#F5F3EE'
+                        pf: {
+                            blue: '#A0C4FF',
+                            blueDark: '#3568B5',
+                            ink: '#1A2B3D',
+                            fog: '#F0F6FF'
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui'],
-                        display: ['Poppins', 'Inter']
+                        display: ['Playfair Display', 'Georgia', 'serif']
                     },
                     boxShadow: {
                         soft: '0 6px 24px rgba(0,0,0,.06)'
@@ -43,11 +42,11 @@
 
     <style>
         :root {
-            --fl-green: #1D6B3A;
-            --fl-green2: #2F9D57;
-            --fl-orange: #F57C00;
-            --fl-ink: #0E1F16;
-            --fl-fog: #F5F3EE;
+            --pf-blue: #A0C4FF;
+            --pf-blue-dark: #3568B5;
+            --pf-blue-hover: #2A5494;
+            --pf-ink: #1A2B3D;
+            --pf-fog: #F0F6FF;
             --shadow: 0 6px 24px rgba(0, 0, 0, .06);
             --radius: 20px;
         }
@@ -58,7 +57,7 @@
             gap: .5rem;
             padding: .75rem 1.25rem;
             border-radius: var(--radius);
-            background: var(--fl-green);
+            background: var(--pf-blue-dark);
             color: #fff;
             font-weight: 600;
             transition: .2s ease;
@@ -66,17 +65,17 @@
         }
 
         .btn:hover {
-            opacity: .95
+            background: var(--pf-blue-hover);
         }
 
         .btn:active {
-            opacity: .9
+            background: #234878;
         }
 
         .btn-outline {
             background: #fff;
-            color: var(--fl-green);
-            border: 1px solid var(--fl-green);
+            color: var(--pf-blue-dark);
+            border: 1px solid var(--pf-blue-dark);
         }
 
         .chip {
@@ -87,8 +86,8 @@
             border-radius: 999px;
             font-size: .75rem;
             font-weight: 600;
-            background: rgba(29, 107, 58, .10);
-            color: var(--fl-green);
+            background: rgba(160, 196, 255, .25);
+            color: var(--pf-ink);
         }
 
         .container-edge {
@@ -104,56 +103,39 @@
             overflow: hidden;
             transition: .2s ease;
         }
-
-        #map {
-            width: 100%;
-            height: 420px;
-            border-radius: var(--radius);
-        }
-
-        @media (min-width:1024px) {
-            #map {
-                height: 520px;
-            }
-        }
     </style>
 
 </head>
 
-<body class="bg-fl-fog text-fl-ink font-sans" data-page="home">
-    <!-- Header -->
+<body class="bg-pf-fog text-pf-ink font-sans" data-page="home">
     <header class="bg-white/80 backdrop-blur sticky top-0 z-50 border-b border-black/5">
         <div class="container-edge flex items-center justify-between h-16">
             <a href="/" class="flex items-center gap-3">
-                <img src="/assets/logo.png" alt="Flow Fitness" class="h-10 w-30  rounded-full" />
-                <span class="font-display text-xl font-bold tracking-tight">Flow <span
-                        class="text-fl-green">Fitness</span></span>
+                <img src="/assets/logo.png" alt="Projeto Flow" class="h-10 w-10 rounded-full" />
+                <span class="font-display text-xl font-bold tracking-tight">Projeto <span
+                        class="text-pf-blueDark">Flow</span></span>
             </a>
             <nav class="hidden md:flex items-center gap-6 text-sm">
-                <a href="/" class="hover:text-fl-green flex items-center gap-1" data-nav="home">
-                    Inicio
+                <a href="/" class="hover:text-pf-blueDark flex items-center gap-1" data-nav="home">
+                    Início
                 </a>
-                 <!-- <a href="/cardapio.html" class="hover:text-fl-green flex items-center gap-1" data-nav="menu">
+                <a href="/cardapio.html" class="hover:text-pf-blueDark flex items-center gap-1" data-nav="menu">
                     Cardápio
-                </a> -->
-                <a href="/receitas.html" class="hover:text-fl-green flex items-center gap-1" data-nav="recipes">
-                    Receitas
                 </a>
-                <a href="/sobre.html" class="hover:text-fl-green flex items-center gap-1" data-nav="about">
+                <a href="/sobre.html" class="hover:text-pf-blueDark flex items-center gap-1" data-nav="about">
                     Sobre
                 </a>
-                <a href="/contato.html" class="hover:text-fl-green flex items-center gap-1" data-nav="contact">
+                <a href="/contato.html" class="hover:text-pf-blueDark flex items-center gap-1" data-nav="contact">
                     Contato
                 </a>
                 <a href="/cardapio.html" class="btn"><i data-lucide="shopping-bag"></i> Ver Cardápio</a>
             </nav>
             <div class="flex items-center gap-2 md:hidden">
                 <button id="mobile-menu-toggle" type="button"
-                    class="inline-flex items-center justify-center h-11 w-11 rounded-full border border-black/10 bg-white text-fl-ink shadow-soft"
+                    class="inline-flex items-center justify-center h-11 w-11 rounded-full border border-black/10 bg-white text-pf-ink shadow-soft"
                     aria-label="Abrir menu" aria-controls="mobile-menu" aria-expanded="false">
                     <i data-lucide="menu"></i>
                 </button>
-
             </div>
         </div>
     </header>
@@ -163,295 +145,84 @@
         <nav class="absolute top-0 right-0 h-full w-72 max-w-[80vw] bg-white shadow-soft p-6 flex flex-col gap-6 translate-x-full transition-transform duration-200"
             data-menu-panel aria-label="Menu mobile">
             <div class="flex items-center justify-between">
-                <span class="font-display text-xl font-bold text-fl-ink">Menu</span>
+                <span class="font-display text-xl font-bold text-pf-ink">Menu</span>
                 <button type="button"
-                    class="inline-flex items-center justify-center h-9 w-9 rounded-full border border-black/10 bg-white text-fl-ink"
+                    class="inline-flex items-center justify-center h-9 w-9 rounded-full border border-black/10 bg-white text-pf-ink"
                     data-menu-close aria-label="Fechar menu">
                     <i data-lucide="x"></i>
                 </button>
             </div>
-            <div class="flex flex-col gap-4 text-base text-fl-ink">
-                <a href="/" class="flex items-center gap-2" data-menu-close data-nav="home">
-                    Início
-                </a>
-                <a href="/cardapio.html" class="flex items-center gap-2" data-menu-close data-nav="menu">
-                    Cardápio
-                </a>
-                <a href="/receitas.html" class="flex items-center gap-2" data-menu-close data-nav="recipes">
-                    Receitas
-                </a>
-                <a href="/sobre.html" class="flex items-center gap-2" data-menu-close data-nav="about">
-                    Sobre
-                </a>
-                <a href="/contato.html" class="flex items-center gap-2" data-menu-close data-nav="contact">
-                    Contato
-                </a>
+            <div class="flex flex-col gap-4 text-base text-pf-ink">
+                <a href="/" class="flex items-center gap-2" data-menu-close data-nav="home">Início</a>
+                <a href="/cardapio.html" class="flex items-center gap-2" data-menu-close data-nav="menu">Cardápio</a>
+                <a href="/sobre.html" class="flex items-center gap-2" data-menu-close data-nav="about">Sobre</a>
+                <a href="/contato.html" class="flex items-center gap-2" data-menu-close data-nav="contact">Contato</a>
             </div>
         </nav>
     </div>
 
-    <!-- Hero -->
     <section class="container-edge py-14 md:py-20 grid md:grid-cols-2 gap-10 items-center">
         <div>
-            <div class="chip mb-4">Saúde • Bem-estar • Treino</div>
+            <div class="chip mb-4">Método METABOLIC</div>
             <h1 class="font-display text-4xl md:text-5xl font-bold leading-tight">
-                Lanches proteicos & bebidas funcionais
-                <span class="text-fl-green">para seu dia</span>
+                Oi, linda! Bora se cuidar comigo?
             </h1>
             <p class="mt-4 text-lg text-black/70">
-                Energia, praticidade e sabor. Conheça nossos hits como <b>Hype Drink</b> e <b>Sunset Detox</b>.
+                Emagreça com <b>leveza + constância</b>. Elimine -3kg ou mais com o método METABOLIC — inscrição aberta!
             </p>
             <div class="mt-8 flex flex-wrap gap-3">
-                <a class="btn" href="/cardapio.html">
+                <a class="btn" href="https://linktr.ee/Projetoflow" target="_blank" rel="noopener">
+                    <i data-lucide="flame"></i> Inscrição aberta
+                </a>
+                <a class="btn btn-outline" href="/cardapio.html">
                     <i data-lucide="utensils"></i> Ver Cardápio
                 </a>
-                <a class="btn btn-outline" href="/receitas.html">
-                    Receitas
-                </a>
             </div>
-
         </div>
         <div class="relative">
-            <img src="/assets/banner-cardapio.png" alt="Bebidas e lanches Flow"
-                class="rounded-xl2 shadow-soft w-full max-w-[408px] h-auto mx-auto md:mx-0" />
-            <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-soft p-4">
-                <p class="font-display text-lg">Mais vendidos</p>
-                <div id="home-best" class="mt-2 text-sm text-black/70">Carregando…</div>
+            <img src="/assets/hero-projeto-flow.png" alt="Mulher sorrindo com camiseta Projeto Flow"
+                class="rounded-xl2 shadow-soft w-full max-w-[408px] h-auto mx-auto md:mx-0 object-cover" />
+            <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-soft p-4 max-w-[260px]">
+                <p class="font-display text-lg leading-snug">Saúde • Bem-estar • Liberdade</p>
+                <p class="mt-2 text-sm text-black/70">Cuide de você com leveza. A constância transforma — e você merece viver essa liberdade.</p>
             </div>
         </div>
     </section>
 
-    <!-- Benefícios -->
     <section class="bg-white border-y border-black/5">
         <div class="container-edge py-12 grid md:grid-cols-3 gap-8">
-            <div class="p-6 rounded-2xl" style="background:rgba(29,107,58,.08)">
+            <div class="p-6 rounded-2xl" style="background:rgba(160,196,255,.15)">
                 <p class="font-display text-lg flex items-center gap-2">
-                    <i data-lucide="dumbbell"></i> Proteína de qualidade
+                    <i data-lucide="heart"></i> Leveza + constância
                 </p>
-                <p class="text-black/70 mt-2">Opções para saciedade e recuperação muscular.</p>
+                <p class="text-black/70 mt-2">Emagrecimento sem radicalismo — hábitos que cabem na sua rotina.</p>
             </div>
-            <div class="p-6 rounded-2xl" style="background:rgba(245,124,0,.08)">
+            <div class="p-6 rounded-2xl" style="background:rgba(160,196,255,.25)">
                 <p class="font-display text-lg flex items-center gap-2">
-                    <i data-lucide="bolt"></i> Energia inteligente
+                    <i data-lucide="sparkles"></i> Método METABOLIC
                 </p>
-                <p class="text-black/70 mt-2">Cafeína na medida certa e bons ingredientes.</p>
+                <p class="text-black/70 mt-2">Elimine -3kg ou mais com um método pensado para o seu corpo.</p>
             </div>
             <div class="card p-6">
                 <p class="font-display text-lg flex items-center gap-2">
                     <i data-lucide="clock"></i> Praticidade
                 </p>
-                <p class="text-black/70 mt-2">Pronto pra levar e incluir na rotina.</p>
+                <p class="text-black/70 mt-2">Cardápio pronto para você pedir pelo WhatsApp ou Instagram.</p>
             </div>
         </div>
     </section>
 
-    <!-- CTA Receitas -->
-    <section class="border-y border-black/5">
-        <section class="container-edge py-14 text-center">
-            <h2 class="font-display text-3xl font-bold">Receitas Flow</h2>
-            <p class="text-black/70 mt-2">Passo a passo simples, fotos e dicas.</p>
-            <a class="btn mt-6" href="/receitas.html">Ver receitas</a>
-        </section>
-    </section>
-
-    <section class="bg-white border-y border-black/5">
-        <section class="container-edge py-14">
-            <section class="space-y-2 mb-5">
-                <h1 class="font-display text-3xl font-bold flex items-center gap-2">
-                    <i data-lucide="map-pin"></i> Points
-                </h1>
-                <p class="text-black/70">Veja nossas unidades no mapa e trace a rota até a mais próxima.</p>
-            </section>
-
-            <!-- Mapa -->
-            <section class="card overflow-hidden">
-                <div id="map"></div>
-            </section>
-
-            <!-- Lista de unidades (CTA “Como chegar”) -->
-            <section class="grid md:grid-cols-2 gap-6 mt-5">
-                <article class="card p-5">
-                    <h2 class="font-semibold text-lg flex items-center gap-2">
-                        <i data-lucide="building-2"></i> Fit Point Fitness - Vila Bethania
-                    </h2>
-                    <p class="text-sm text-black/70 mt-1">R. Cel. Nunes Ferreira, 84 — Vila Bethania, Viana/ES</p>
-                    <div class="mt-4 flex flex-wrap gap-3">
-                        <a id="btn-route-1"
-                            class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-fl-green text-white font-medium"
-                            target="_blank">
-                            <i data-lucide="route"></i> Como chegar
-                        </a>
-                        <a id="btn-view-1"
-                            class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-fl-green text-fl-green font-medium"
-                            target="_blank">
-                            <i data-lucide="map"></i> Ver no Maps
-                        </a>
-                    </div>
-                </article>
-
-                <article class="card p-5">
-                    <h2 class="font-semibold text-lg flex items-center gap-2">
-                        <i data-lucide="building-2"></i> Fit Point Fitness - Vista Dourada
-                    </h2>
-                    <p class="text-sm text-black/70 mt-1">Av. Moxuara, 2549 — Vista Dourada, Cariacica/ES</p>
-                    <div class="mt-4 flex flex-wrap gap-3">
-                        <a id="btn-route-2"
-                            class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-fl-green text-white font-medium"
-                            target="_blank">
-                            <i data-lucide="route"></i> Como chegar
-                        </a>
-                        <a id="btn-view-2"
-                            class="inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-fl-green text-fl-green font-medium"
-                            target="_blank">
-                            <i data-lucide="map"></i> Ver no Maps
-                        </a>
-                    </div>
-                </article>
-            </section>
-        </section>
-    </section>
-
-    <!-- Footer -->
     <footer class="bg-white border-t border-black/5">
         <div class="container-edge py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-sm">© <span id="y"></span> Flow Fitness — saúde & bem-estar</p>
+            <p class="text-sm">© <span id="y"></span> Projeto Flow — emagreça com leveza e constância</p>
             <div class="flex gap-4 text-sm">
-                <a class="hover:text-fl-green" href="/cardapio.html">Cardápio</a>
-                <a class="hover:text-fl-green" href="/sobre.html">Sobre</a>
-                <a class="hover:text-fl-green" href="/contato.html">Contato</a>
+                <a class="hover:text-pf-blueDark" href="/cardapio.html">Cardápio</a>
+                <a class="hover:text-pf-blueDark" href="/sobre.html">Sobre</a>
+                <a class="hover:text-pf-blueDark" href="/contato.html">Contato</a>
             </div>
         </div>
     </footer>
 
-    <script>
-        // 1) Cadastre aqui as coordenadas (lat, lng) e place_id (opcional) de cada unidade.
-        //    Dica: no Google Maps, clique com botão direito no ponto e copie as coordenadas.
-        const LOCATIONS = [
-            {
-                name: 'Fit Point Fitness - Vila Bethania',
-                lat: -20.360618, lng: -40.405477, // EXEMPLO: ajuste para sua unidade
-                placeId: null,                 // opcional: "ChIJxxxxxxxxxxxx"
-                addr: 'R. Cel. Nunes Ferreira, 84 — Vila Bethania, Viana/ES',
-                routeBtn: 'btn-route-1',
-                viewBtn: 'btn-view-1'
-            },
-            {
-                name: 'Fit Point Fitness - Vista Dourada',
-                lat: -20.332230, lng: -40.426799, // EXEMPLO: ajuste para sua unidade
-                placeId: null,
-                addr: 'Av. Moxuara, 2549 — Vista Dourada, Cariacica/ES',
-                routeBtn: 'btn-route-2',
-                viewBtn: 'btn-view-2'
-            }
-        ];
-
-        // 2) Estilo do mapa combinando a paleta Flow (opcional)
-        const MAP_STYLE = [
-            { elementType: 'geometry', stylers: [{ color: '#ebe3cd' }] },
-            { elementType: 'labels.text.fill', stylers: [{ color: '#523735' }] },
-            { elementType: 'labels.text.stroke', stylers: [{ color: '#f5f1e6' }] },
-            { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#e6f2ea' }] },
-            { featureType: 'water', elementType: 'geometry.fill', stylers: [{ color: '#c9e7e4' }] },
-            { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#f5f1e6' }] },
-            { featureType: 'road.arterial', elementType: 'geometry', stylers: [{ color: '#fdfcf8' }] },
-            { featureType: 'poi.business', stylers: [{ visibility: 'off' }] }
-        ];
-
-        // 3) Inicializa o mapa (chamada pelo callback do script do Google)
-        function initMap() {
-            const bounds = new google.maps.LatLngBounds();
-            const map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: LOCATIONS[0].lat, lng: LOCATIONS[0].lng },
-                zoom: 13,
-                styles: MAP_STYLE,
-                mapTypeControl: false,
-                streetViewControl: false
-            });
-
-            const info = new google.maps.InfoWindow();
-
-            LOCATIONS.forEach((loc, i) => {
-                const marker = new google.maps.Marker({
-                    position: { lat: loc.lat, lng: loc.lng },
-                    map,
-                    title: loc.name,
-                    // Ícone com cor verde Flow (SVG)
-                    icon: {
-                        url: 'data:image/svg+xml;utf8,' + encodeURIComponent(`
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40">
-                <path fill="#1D6B3A" d="M20 0C11.16 0 4 7.16 4 16c0 11.2 16 24 16 24s16-12.8 16-24C36 7.16 28.84 0 20 0z"/>
-                <circle cx="20" cy="16" r="6" fill="#fff"/>
-              </svg>
-            `),
-                        scaledSize: new google.maps.Size(36, 36),
-                        anchor: new google.maps.Point(18, 36)
-                    }
-                });
-
-                marker.addListener('click', () => {
-                    info.setContent(`
-            <div style="font-family:Inter,system-ui">
-              <strong>${loc.name}</strong><br/>
-              <small>${loc.addr || ''}</small><br/>
-              <a href="https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}" target="_blank">Como chegar</a>
-            </div>
-          `);
-                    info.open(map, marker);
-                });
-
-                bounds.extend(marker.getPosition());
-
-                // Botões “Como chegar” e “Ver no Maps”
-                const route = document.getElementById(loc.routeBtn);
-                if (route) {
-                    route.href = `https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lng}`;
-                }
-                const view = document.getElementById(loc.viewBtn);
-                if (view) {
-                    view.href = loc.placeId
-                        ? `https://www.google.com/maps/place/?q=place_id:${loc.placeId}`
-                        : `https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}`;
-                }
-            });
-
-            // Ajusta o zoom para mostrar todos os marcadores
-            map.fitBounds(bounds);
-        }
-
-        // Exponha o initMap no escopo global (necessário para o callback do Google)
-        window.initMap = initMap;
-
-        // Atualiza ícones Lucide
-        document.addEventListener('DOMContentLoaded', () => {
-            try { window.lucide && window.lucide.createIcons(); } catch (e) { }
-            document.getElementById('y').textContent = new Date().getFullYear();
-        });
-    </script>
-
-    <!-- Google Maps JS API - Carregado dinamicamente via API -->
-    <script>
-        // Carrega a chave do Google Maps do backend e inicializa o script
-        (function() {
-            fetch('/api/config/google-maps-key')
-                .then(res => res.json())
-                .then(data => {
-                    if (data.key) {
-                        const script = document.createElement('script');
-                        script.async = true;
-                        script.defer = true;
-                        script.src = `https://maps.googleapis.com/maps/api/js?key=${data.key}&callback=initMap`;
-                        document.head.appendChild(script);
-                    } else {
-                        console.error('Erro ao carregar Google Maps API Key:', data.error);
-                        document.getElementById('map').innerHTML = '<p class="p-4 text-red-600">Erro ao carregar o mapa. Verifique a configuração da API.</p>';
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao carregar Google Maps API Key:', error);
-                    document.getElementById('map').innerHTML = '<p class="p-4 text-red-600">Erro ao carregar o mapa.</p>';
-                });
-        })();
-    </script>
     <script src="/js/config.js"></script>
     <script src="/js/database.js"></script>
     <script src="/js/app.js"></script>

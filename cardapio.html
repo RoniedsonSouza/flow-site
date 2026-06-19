@@ -4,28 +4,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Cardápio — Flow Fitness</title>
+  <title>Cardápio — Projeto Flow</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" type="image/png" href="/assets/logo.png">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap"
     rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            fp: {
-              green: '#1D6B3A',
-              green2: '#2F9D57',
-              orange: '#F57C00',
-              ink: '#0E1F16',
-              fog: '#F5F3EE'
+            pf: {
+              blue: '#A0C4FF',
+              blueDark: '#3568B5',
+              ink: '#1A2B3D',
+              fog: '#F0F6FF'
             }
           },
           fontFamily: {
             sans: ['Inter', 'system-ui'],
-            display: ['Poppins', 'Inter']
+            display: ['Playfair Display', 'Georgia', 'serif']
           },
           boxShadow: {
             soft: '0 6px 24px rgba(0,0,0,.06)'
@@ -38,11 +37,11 @@
 
   <style>
     :root {
-      --fl-green: #1D6B3A;
-      --fl-green2: #2F9D57;
-      --fl-orange: #F57C00;
-      --fl-ink: #0E1F16;
-      --fl-fog: #F5F3EE;
+      --pf-blue: #A0C4FF;
+      --pf-blue-dark: #3568B5;
+      --pf-blue-hover: #2A5494;
+      --pf-ink: #1A2B3D;
+      --pf-fog: #F0F6FF;
       --shadow: 0 6px 24px rgba(0, 0, 0, .06);
       --radius: 20px;
     }
@@ -53,25 +52,20 @@
       gap: .5rem;
       padding: .75rem 1.25rem;
       border-radius: var(--radius);
-      background: var(--fl-green);
+      background: var(--pf-blue-dark);
       color: #fff;
       font-weight: 600;
       transition: .2s ease;
       text-decoration: none;
     }
 
-    .btn:hover {
-      opacity: .95;
-    }
-
-    .btn:active {
-      opacity: .9;
-    }
+    .btn:hover { background: var(--pf-blue-hover); }
+    .btn:active { background: #234878; }
 
     .btn-outline {
       background: #fff;
-      color: var(--fl-green);
-      border: 1px solid var(--fl-green);
+      color: var(--pf-blue-dark);
+      border: 1px solid var(--pf-blue-dark);
     }
 
     .chip {
@@ -82,8 +76,8 @@
       border-radius: 999px;
       font-size: .75rem;
       font-weight: 600;
-      background: rgba(29, 107, 58, .10);
-      color: var(--fl-green);
+      background: rgba(160, 196, 255, .25);
+      color: var(--pf-ink);
     }
 
     .container-edge {
@@ -118,7 +112,7 @@
       font-size: 0.9375rem;
       font-family: inherit;
       background-color: #ffffff;
-      color: var(--fl-ink);
+      color: var(--pf-ink);
       transition: all 0.2s ease;
       box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     }
@@ -134,8 +128,8 @@
     textarea:focus, 
     select:focus {
       outline: none;
-      border-color: var(--fl-green);
-      box-shadow: 0 0 0 3px rgba(29, 107, 58, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+      border-color: var(--pf-blue-dark);
+      box-shadow: 0 0 0 3px rgba(160, 196, 255, 0.25), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
       background-color: #ffffff;
     }
 
@@ -162,21 +156,21 @@
     }
 
     select:hover {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%231D6B3A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%233568B5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       border-color: #d1d5db;
     }
 
     select:focus {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%231D6B3A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      border-color: var(--fl-green);
-      box-shadow: 0 0 0 3px rgba(29, 107, 58, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%233568B5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      border-color: var(--pf-blue-dark);
+      box-shadow: 0 0 0 3px rgba(160, 196, 255, 0.25), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
     }
 
     /* Opções do select */
     select option {
       padding: 0.875rem 1rem;
       background-color: #ffffff;
-      color: var(--fl-ink);
+      color: var(--pf-ink);
       font-weight: 500;
       border-radius: 0.5rem;
     }
@@ -188,40 +182,37 @@
 
     select option:checked,
     select option:focus {
-      background: linear-gradient(to right, rgba(29, 107, 58, 0.1), rgba(29, 107, 58, 0.05));
-      color: var(--fl-green);
+      background: linear-gradient(to right, rgba(160, 196, 255, 0.2), rgba(160, 196, 255, 0.1));
+      color: var(--pf-blue-dark);
       font-weight: 600;
     }
   </style>
 </head>
 
-<body class="bg-fl-fog text-fl-ink font-sans" data-page="menu">
+<body class="bg-pf-fog text-pf-ink font-sans" data-page="menu">
   <header class="bg-white/80 backdrop-blur sticky top-0 z-50 border-b border-black/5">
   <div class="container-edge flex items-center justify-between h-16">
     <a href="/" class="flex items-center gap-3">
-      <img src="/assets/logo.png" alt="Flow Fitness" class="h-10 w-30  rounded-full" />
-      <span class="font-display text-xl font-bold tracking-tight">Flow <span class="text-fl-green">Fitness</span></span>
+      <img src="/assets/logo.png" alt="Projeto Flow" class="h-10 w-10 rounded-full" />
+      <span class="font-display text-xl font-bold tracking-tight">Projeto <span class="text-pf-blueDark">Flow</span></span>
     </a>
     <nav class="hidden md:flex items-center gap-6 text-sm">
-      <a href="/" class="hover:text-fl-green flex items-center gap-1" data-nav="home">
+      <a href="/" class="hover:text-pf-blueDark flex items-center gap-1" data-nav="home">
                     Inicio
                 </a>
-                 <!-- <a href="/cardapio.html" class="hover:text-fl-green flex items-center gap-1" data-nav="menu">
-                    Cardápio
-                </a> -->
-      <a href="/receitas.html" class="hover:text-fl-green flex items-center gap-1" data-nav="recipes">
-        Receitas
+      <a href="/cardapio.html" class="hover:text-pf-blueDark flex items-center gap-1" data-nav="menu">
+        Cardápio
       </a>
-      <a href="/sobre.html" class="hover:text-fl-green flex items-center gap-1" data-nav="about">
+      <a href="/sobre.html" class="hover:text-pf-blueDark flex items-center gap-1" data-nav="about">
         Sobre
       </a>
-      <a href="/contato.html" class="hover:text-fl-green flex items-center gap-1" data-nav="contact">
+      <a href="/contato.html" class="hover:text-pf-blueDark flex items-center gap-1" data-nav="contact">
         Contato
       </a>
       <a href="/cardapio.html" class="btn"><i data-lucide="shopping-bag"></i> Ver Cardápio</a>
     </nav>
     <div class="flex items-center gap-2 md:hidden">
-      <button id="mobile-menu-toggle" type="button" class="inline-flex items-center justify-center h-11 w-11 rounded-full border border-black/10 bg-white text-fl-ink shadow-soft" aria-label="Abrir menu" aria-controls="mobile-menu" aria-expanded="false">
+      <button id="mobile-menu-toggle" type="button" class="inline-flex items-center justify-center h-11 w-11 rounded-full border border-black/10 bg-white text-pf-ink shadow-soft" aria-label="Abrir menu" aria-controls="mobile-menu" aria-expanded="false">
         <i data-lucide="menu"></i>
       </button>
     </div>
@@ -231,20 +222,17 @@
   <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-200" data-menu-overlay data-menu-close></div>
   <nav class="absolute top-0 right-0 h-full w-72 max-w-[80vw] bg-white shadow-soft p-6 flex flex-col gap-6 translate-x-full transition-transform duration-200" data-menu-panel aria-label="Menu mobile">
     <div class="flex items-center justify-between">
-      <span class="font-display text-xl font-bold text-fl-ink">Menu</span>
-      <button type="button" class="inline-flex items-center justify-center h-9 w-9 rounded-full border border-black/10 bg-white text-fl-ink" data-menu-close aria-label="Fechar menu">
+      <span class="font-display text-xl font-bold text-pf-ink">Menu</span>
+      <button type="button" class="inline-flex items-center justify-center h-9 w-9 rounded-full border border-black/10 bg-white text-pf-ink" data-menu-close aria-label="Fechar menu">
         <i data-lucide="x"></i>
       </button>
     </div>
-    <div class="flex flex-col gap-4 text-base text-fl-ink">
+    <div class="flex flex-col gap-4 text-base text-pf-ink">
       <a href="/" class="flex items-center gap-2" data-menu-close data-nav="home">
         Início
       </a>
       <a href="/cardapio.html" class="flex items-center gap-2" data-menu-close data-nav="menu">
         Cardápio
-      </a>
-      <a href="/receitas.html" class="flex items-center gap-2" data-menu-close data-nav="recipes">
-        Receitas
       </a>
       <a href="/sobre.html" class="flex items-center gap-2" data-menu-close data-nav="about">
         Sobre
@@ -261,7 +249,7 @@
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
       <div>
         <h1 class="font-display text-3xl font-bold">Cardápio</h1>
-        <p class="text-black/70">Filtre por categoria ou busque pelo nome.</p>
+        <p class="text-black/70">Adicione itens ao carrinho e envie pelo WhatsApp ou Instagram.</p>
       </div>
       <div class="flex gap-2">
         <select id="filter-category">
@@ -274,11 +262,85 @@
     <div id="menu-grid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">Carregando…</div>
   </main>
 
+  <div id="cart-backdrop" class="hidden fixed inset-0 z-[55] bg-black/40 transition-opacity" aria-hidden="true"></div>
+
+  <div id="cart-root"
+    class="fixed z-[60] pointer-events-none bottom-0 left-0 right-0 flex flex-col items-stretch gap-2 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-0 max-md:gap-0 max-md:px-0 max-md:pb-0 md:inset-auto md:bottom-4 md:right-6 md:left-auto md:w-auto md:items-end md:gap-3 md:px-0 md:pb-0">
+    <div id="cart-panel"
+      class="hidden pointer-events-auto w-full max-w-lg mx-auto md:mx-0 md:w-[min(92vw,26rem)] lg:w-[min(92vw,28rem)] max-md:mx-0 max-md:max-w-none max-md:w-full max-md:h-[calc(100dvh-env(safe-area-inset-bottom))] max-md:max-h-[calc(100dvh-env(safe-area-inset-bottom))] max-md:rounded-t-3xl md:h-[min(88dvh,700px)] md:max-h-[calc(100dvh-4.5rem)] flex flex-col rounded-t-2xl md:rounded-2xl bg-white shadow-2xl border border-black/10 overflow-hidden min-h-0"
+      role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
+      <div class="flex items-center justify-between p-4 sm:p-4 border-b border-black/5 shrink-0 bg-white">
+        <h2 id="cart-title" class="font-display font-bold text-lg text-pf-ink">Seu pedido</h2>
+        <button type="button" id="cart-close"
+          class="h-9 w-9 inline-flex items-center justify-center rounded-full border border-black/10 bg-white text-pf-ink hover:bg-black/5"
+          aria-label="Fechar pedido">
+          <span class="text-xl leading-none" aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div id="cart-lines" class="flex-1 overflow-y-auto min-h-0 max-md:min-h-[min(42dvh,24rem)] overscroll-contain p-4 sm:p-4 max-md:py-3"></div>
+      <div class="px-4 py-3 sm:px-4 shrink-0 bg-pf-fog/80 border-t border-black/5 space-y-3 md:max-h-[28vh] md:overflow-y-auto md:overscroll-contain max-md:max-h-[min(34vh,15.5rem)] max-md:overflow-y-auto max-md:min-h-0 max-md:overscroll-contain">
+        <div>
+          <label for="cart-payment" class="text-xs font-medium text-black/60">Forma de pagamento</label>
+          <select id="cart-payment"
+            class="mt-1 w-full text-sm rounded-xl border border-black/15 bg-white py-2 px-2.5 text-pf-ink focus:outline-none focus:ring-2 focus:ring-pf-blueDark/25 focus:border-pf-blueDark">
+            <option value="">Selecione…</option>
+            <option value="pix">Pix</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="credito">Cartão de crédito</option>
+            <option value="debito">Cartão de débito</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        <div>
+          <label for="cart-fulfillment" class="text-xs font-medium text-black/60">Como receber o pedido</label>
+          <select id="cart-fulfillment"
+            class="mt-1 w-full text-sm rounded-xl border border-black/15 bg-white py-2 px-2.5 text-pf-ink focus:outline-none focus:ring-2 focus:ring-pf-blueDark/25 focus:border-pf-blueDark">
+            <option value="retirada">Retirada na loja</option>
+            <option value="entrega">Entrega no endereço</option>
+          </select>
+        </div>
+        <div>
+          <label for="cart-notes" class="text-xs font-medium text-black/60">Endereço e observações</label>
+          <p class="text-[11px] text-black/45 mt-0.5 leading-snug">Para entrega, informe endereço completo. Horário, referência ou restrições alimentares também vão aqui.</p>
+          <textarea id="cart-notes" rows="3"
+            class="mt-1 w-full text-sm rounded-xl border border-black/15 bg-white resize-none py-2 px-2.5 text-pf-ink placeholder:text-black/35 focus:outline-none focus:ring-2 focus:ring-pf-blueDark/25 focus:border-pf-blueDark max-md:min-h-[4.25rem]"
+            placeholder="Ex.: Rua, número, bairro, CEP, ponto de referência…"></textarea>
+        </div>
+      </div>
+      <div class="flex items-center justify-between gap-2 px-4 py-2 sm:px-4 border-t border-black/5 bg-white shrink-0 max-md:py-2">
+        <button type="button" id="cart-clear" class="text-sm font-medium text-black/50 hover:text-pf-blueDark">
+          Limpar
+        </button>
+        <p class="text-sm text-pf-ink">Total <span id="cart-total-value" class="font-bold text-pf-blueDark">R$&nbsp;0,00</span></p>
+      </div>
+      <div class="p-4 pt-2 pb-[max(1rem,env(safe-area-inset-bottom))] bg-white shrink-0 max-md:p-3 max-md:pt-2 md:pb-4">
+        <button type="button" id="cart-whatsapp"
+          class="btn w-full justify-center gap-2 shadow-soft disabled:opacity-45 disabled:pointer-events-none min-h-[3rem] text-[0.95rem]" disabled>
+          Enviar pedido
+        </button>
+      </div>
+    </div>
+    <button type="button" id="cart-fab"
+      class="pointer-events-auto self-end h-14 w-14 shrink-0 rounded-full bg-pf-blueDark text-white shadow-lg flex items-center justify-center relative hover:opacity-95 transition-opacity max-md:absolute max-md:right-3 max-md:bottom-[max(0.75rem,env(safe-area-inset-bottom))] max-md:z-[61] max-md:shadow-xl md:self-end"
+      aria-label="Ver pedido" aria-haspopup="dialog" aria-expanded="false">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        aria-hidden="true">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+        <path d="M3 6h18" />
+        <path d="M16 10a4 4 0 0 1-8 0" />
+      </svg>
+      <span id="cart-fab-count"
+        class="hidden absolute -top-1 -right-1 min-w-[1.25rem] h-5 px-1 rounded-full bg-pf-blue text-white text-xs font-bold flex items-center justify-center">0</span>
+    </button>
+  </div>
+
   <footer class="bg-white border-t border-black/5">
-    <div class="max-w-6xl mx-auto px-4 py-8 text-sm">© <span id="y"></span> Flow</div>
+    <div class="max-w-6xl mx-auto px-4 py-8 text-sm">© <span id="y"></span> Projeto Flow — emagreça com leveza e constância</div>
   </footer>
 
   <script src="/js/config.js"></script>
+  <script src="/js/cart.js"></script>
   <script src="/js/database.js"></script>
   <script src="/js/app.js"></script>
   <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
