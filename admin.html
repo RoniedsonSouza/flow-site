@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Painel Administrativo — Flow Fitness</title>
+  <title>Painel Administrativo — Projeto Flow</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" type="image/png" href="/assets/logo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500&display=swap"
     rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
@@ -15,17 +15,16 @@
       theme: {
         extend: {
           colors: {
-            fp: {
-              green: '#1D6B3A',
-              green2: '#2F9D57',
-              orange: '#F57C00',
-              ink: '#0E1F16',
-              fog: '#F5F3EE'
+            pf: {
+              blue: '#A0C4FF',
+              blueDark: '#3568B5',
+              ink: '#1A2B3D',
+              fog: '#F0F6FF'
             }
           },
           fontFamily: {
             sans: ['Inter', 'system-ui'],
-            display: ['Poppins', 'Inter']
+            display: ['Playfair Display', 'Georgia', 'serif']
           },
           boxShadow: {
             soft: '0 6px 24px rgba(0,0,0,.06)'
@@ -38,11 +37,11 @@
 
   <style>
     :root {
-      --fl-green: #1D6B3A;
-      --fl-green2: #2F9D57;
-      --fl-orange: #F57C00;
-      --fl-ink: #0E1F16;
-      --fl-fog: #F5F3EE;
+      --pf-blue: #A0C4FF;
+      --pf-blue-dark: #3568B5;
+      --pf-blue-hover: #2A5494;
+      --pf-ink: #1A2B3D;
+      --pf-fog: #F0F6FF;
       --shadow: 0 6px 24px rgba(0, 0, 0, .06);
       --radius: 20px;
     }
@@ -53,7 +52,7 @@
       gap: .5rem;
       padding: .75rem 1.25rem;
       border-radius: var(--radius);
-      background: var(--fl-green);
+      background: var(--pf-blue-dark);
       color: #fff;
       font-weight: 600;
       transition: .2s ease;
@@ -64,7 +63,7 @@
     }
 
     .btn:hover {
-      opacity: .95;
+      background: var(--pf-blue-hover);
     }
 
     .btn-danger {
@@ -77,8 +76,8 @@
 
     .btn-outline {
       background: #fff;
-      color: var(--fl-green);
-      border: 1px solid var(--fl-green);
+      color: var(--pf-blue-dark);
+      border: 1px solid var(--pf-blue-dark);
     }
 
     .container-edge {
@@ -106,7 +105,7 @@
       font-size: 0.9375rem;
       font-family: inherit;
       background-color: #ffffff;
-      color: var(--fl-ink);
+      color: var(--pf-ink);
       transition: all 0.2s ease;
       box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     }
@@ -122,8 +121,8 @@
     textarea:focus, 
     select:focus {
       outline: none;
-      border-color: var(--fl-green);
-      box-shadow: 0 0 0 3px rgba(29, 107, 58, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+      border-color: var(--pf-blue-dark);
+      box-shadow: 0 0 0 3px rgba(160, 196, 255, 0.25), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
       background-color: #ffffff;
     }
 
@@ -166,21 +165,21 @@
     }
 
     select:hover {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%231D6B3A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%233568B5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       border-color: #d1d5db;
     }
 
     select:focus {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%231D6B3A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      border-color: var(--fl-green);
-      box-shadow: 0 0 0 3px rgba(29, 107, 58, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%233568B5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      border-color: var(--pf-blue-dark);
+      box-shadow: 0 0 0 3px rgba(160, 196, 255, 0.25), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
     }
 
     /* Opções do select */
     select option {
       padding: 0.875rem 1rem;
       background-color: #ffffff;
-      color: var(--fl-ink);
+      color: var(--pf-ink);
       font-weight: 500;
       border-radius: 0.5rem;
     }
@@ -192,8 +191,8 @@
 
     select option:checked,
     select option:focus {
-      background: linear-gradient(to right, rgba(29, 107, 58, 0.1), rgba(29, 107, 58, 0.05));
-      color: var(--fl-green);
+      background: linear-gradient(to right, rgba(160, 196, 255, 0.25), rgba(29, 107, 58, 0.05));
+      color: var(--pf-blue-dark);
       font-weight: 600;
     }
 
@@ -213,12 +212,12 @@
     }
 
     input[type="checkbox"]:hover {
-      border-color: var(--fl-green);
+      border-color: var(--pf-blue-dark);
     }
 
     input[type="checkbox"]:checked {
-      background-color: var(--fl-green);
-      border-color: var(--fl-green);
+      background-color: var(--pf-blue-dark);
+      border-color: var(--pf-blue-dark);
     }
 
     input[type="checkbox"]:checked::after {
@@ -235,7 +234,7 @@
 
     input[type="checkbox"]:focus {
       outline: none;
-      box-shadow: 0 0 0 3px rgba(29, 107, 58, 0.1);
+      box-shadow: 0 0 0 3px rgba(160, 196, 255, 0.25);
     }
 
     .form-group {
@@ -251,7 +250,7 @@
       margin-bottom: 0.625rem;
       font-weight: 600;
       font-size: 0.875rem;
-      color: var(--fl-ink);
+      color: var(--pf-ink);
       letter-spacing: 0.025em;
     }
 
@@ -272,7 +271,7 @@
       font-size: .75rem;
       font-weight: 600;
       background: rgba(29, 107, 58, .10);
-      color: var(--fl-green);
+      color: var(--pf-blue-dark);
     }
 
     .modal {
@@ -476,16 +475,16 @@
   </style>
 </head>
 
-<body class="bg-fl-fog text-fl-ink font-sans">
+<body class="bg-pf-fog text-pf-ink font-sans">
   <header class="bg-white/80 backdrop-blur sticky top-0 z-50 border-b border-black/5">
     <div class="container-edge flex items-center justify-between h-16">
       <a href="/" class="flex items-center gap-3">
-        <img src="/assets/logo.png" alt="Flow Fitness" class="h-10 w-30 rounded-full" />
-        <span class="font-display text-xl font-bold tracking-tight">Flow <span
-            class="text-fl-green">Admin</span></span>
+        <img src="/assets/logo.png" alt="Projeto Flow" class="h-10 w-10 rounded-full" />
+        <span class="font-display text-xl font-bold tracking-tight">Projeto Flow <span
+            class="text-pf-blueDark">Admin</span></span>
       </a>
       <nav class="flex items-center gap-4">
-        <a href="/" class="text-sm hover:text-fl-green">Voltar ao Site</a>
+        <a href="/" class="text-sm hover:text-pf-blueDark">Voltar ao Site</a>
         <button onclick="location.reload()" class="btn btn-secondary">
           <i data-lucide="refresh-cw"></i> Atualizar
         </button>
@@ -520,26 +519,13 @@
     <div class="mb-6 flex justify-between items-center">
       <div>
         <h1 class="font-display text-3xl font-bold mt-5">Painel Administrativo</h1>
-        <p class="text-black/70 mt-2">Gerencie produtos e receitas do cardápio</p>
+        <p class="text-black/70 mt-2">Gerencie produtos do cardápio</p>
       </div>
       <button onclick="logout()" class="btn btn-secondary">
         <i data-lucide="log-out"></i> Sair
       </button>
     </div>
 
-    <!-- Tabs -->
-    <div class="flex gap-2 mb-6 border-b border-black/10">
-      <button onclick="showTab('products')" id="tab-products"
-        class="px-4 py-2 font-semibold border-b-2 border-fl-green text-fl-green">
-        <i data-lucide="package"></i> Produtos
-      </button>
-      <button onclick="showTab('recipes')" id="tab-recipes"
-        class="px-4 py-2 font-semibold border-b-2 border-transparent hover:text-fl-green">
-        <i data-lucide="chef-hat"></i> Receitas
-      </button>
-    </div>
-
-    <!-- Produtos Section -->
     <div id="section-products">
       <div class="flex justify-between items-center mb-4">
         <h2 class="font-display text-2xl font-bold">Produtos</h2>
@@ -548,19 +534,6 @@
         </button>
       </div>
       <div id="products-list" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <p>Carregando...</p>
-      </div>
-    </div>
-
-    <!-- Receitas Section -->
-    <div id="section-recipes" style="display: none;">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="font-display text-2xl font-bold">Receitas</h2>
-        <button onclick="openRecipeModal()" class="btn">
-          <i data-lucide="plus"></i> Adicionar Receita
-        </button>
-      </div>
-      <div id="recipes-list" class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <p>Carregando...</p>
       </div>
     </div>
@@ -615,63 +588,6 @@
     </div>
   </div>
 
-  <!-- Modal Receita -->
-  <div id="recipe-modal" class="modal">
-    <div class="modal-content">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="font-display text-2xl font-bold" id="recipe-modal-title">Adicionar Receita</h3>
-        <button onclick="closeRecipeModal()" class="text-2xl">&times;</button>
-      </div>
-      <form id="recipe-form" onsubmit="saveRecipe(event)">
-        <input type="hidden" id="recipe-slug-input">
-        <div class="form-group">
-          <label>Slug (identificador único, ex: nome-da-receita)</label>
-          <input type="text" id="recipe-slug" required pattern="[a-z0-9-]+">
-        </div>
-        <div class="form-group">
-          <label>Título</label>
-          <input type="text" id="recipe-title" required>
-        </div>
-        <div class="form-group">
-          <label>URL da Imagem</label>
-          <input type="text" id="recipe-image" placeholder="/assets/imagem.png">
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="form-group">
-            <label>Tempo (minutos)</label>
-            <input type="number" id="recipe-time" min="0">
-          </div>
-          <div class="form-group">
-            <label>Porções</label>
-            <input type="number" id="recipe-servings" min="1" value="1">
-          </div>
-        </div>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="form-group">
-            <label>Calorias (kcal)</label>
-            <input type="number" id="recipe-kcal" min="0">
-          </div>
-          <div class="form-group">
-            <label>Proteína (g)</label>
-            <input type="number" id="recipe-protein" min="0" value="0">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Passos (um por linha)</label>
-          <textarea id="recipe-steps" rows="4" placeholder="Passo 1&#10;Passo 2&#10;Passo 3"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Dicas (uma por linha)</label>
-          <textarea id="recipe-tips" rows="3" placeholder="Dica 1&#10;Dica 2"></textarea>
-        </div>
-        <div class="flex gap-2 justify-end">
-          <button type="button" onclick="closeRecipeModal()" class="btn btn-secondary">Cancelar</button>
-          <button type="submit" class="btn">Salvar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
   <script src="/js/config.js"></script>
   <script src="/js/auth.js"></script>
   <script src="/js/database.js"></script>
@@ -715,7 +631,6 @@
       if (Auth.isAuthenticated()) {
         showAdminPanel();
         if (typeof loadProducts === 'function') await loadProducts();
-        if (typeof loadRecipes === 'function') await loadRecipes();
       } else {
         showLoginScreen();
       }
@@ -748,7 +663,6 @@
         await Auth.login(username, password);
         showAdminPanel();
         if (typeof loadProducts === 'function') await loadProducts();
-        if (typeof loadRecipes === 'function') await loadRecipes();
       } catch (error) {
         errorDiv.textContent = error.message;
         errorDiv.style.display = 'block';

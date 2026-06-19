@@ -13,9 +13,9 @@ const pool = new Pool({
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
 });
 
-const SCHEMA = process.env.DB_SCHEMA || 'flow';
+const SCHEMA = `"${process.env.DB_SCHEMA || 'flow'}"`;
+
 const PRODUCTS_JSON = path.join(__dirname, '../data/products.json');
-const RECIPES_JSON = path.join(__dirname, '../data/recipes.json');
 
 async function migrate() {
   const client = await pool.connect();
@@ -26,10 +26,10 @@ async function migrate() {
     console.log(`📦 Schema: ${SCHEMA}\n`);
 
     // Criar schema
-    console.log(`📋 Criando schema "${SCHEMA}"...`);
+    console.log(`📋 Criando schema ${SCHEMA}...`);
     await client.query(`CREATE SCHEMA IF NOT EXISTS ${SCHEMA}`);
     await client.query(`SET search_path TO ${SCHEMA}, public`);
-    console.log(`✅ Schema "${SCHEMA}" criado/configurado\n`);
+    console.log(`✅ Schema ${SCHEMA} criado/configurado\n`);
 
     // Criar tabelas dentro do schema
     console.log('📋 Criando tabelas no schema...');
@@ -43,22 +43,6 @@ async function migrate() {
         tags JSONB DEFAULT '[]'::jsonb,
         image TEXT,
         active BOOLEAN DEFAULT true,
-        created_at TIMESTAMP DEFAULT NOW(),
-        updated_at TIMESTAMP DEFAULT NOW()
-      )
-    `);
-
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS ${SCHEMA}.recipes (
-        slug VARCHAR(255) PRIMARY KEY,
-        title VARCHAR(255) NOT NULL,
-        image TEXT,
-        time INTEGER,
-        servings INTEGER DEFAULT 1,
-        kcal INTEGER,
-        protein_g INTEGER DEFAULT 0,
-        steps JSONB DEFAULT '[]'::jsonb,
-        tips JSONB DEFAULT '[]'::jsonb,
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW()
       )
@@ -130,45 +114,9 @@ async function migrate() {
       console.log('⚠️  Arquivo products.json não encontrado');
     }
 
-    // Migrar receitas
-    if (fs.existsSync(RECIPES_JSON)) {
-      const recipes = JSON.parse(fs.readFileSync(RECIPES_JSON, 'utf8'));
-      console.log(`\n🍳 Migrando ${recipes.length} receitas...`);
-
-      for (const recipe of recipes) {
-        const existing = await client.query(
-          `SELECT slug FROM ${SCHEMA}.recipes WHERE slug = $1`,
-          [recipe.slug]
-        );
-
-        if (existing.rows.length === 0) {
-          await client.query(
-            `INSERT INTO ${SCHEMA}.recipes (slug, title, image, time, servings, kcal, protein_g, steps, tips, created_at, updated_at) 
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, NOW(), NOW())`,
-            [
-              recipe.slug,
-              recipe.title,
-              recipe.image || null,
-              recipe.time || null,
-              recipe.servings || 1,
-              recipe.kcal || null,
-              recipe.protein_g || 0,
-              JSON.stringify(recipe.steps || []),
-              JSON.stringify(recipe.tips || [])
-            ]
-          );
-          console.log(`  ✅ ${recipe.title}`);
-        } else {
-          console.log(`  ⏭️  ${recipe.title} (já existe)`);
-        }
-      }
-    } else {
-      console.log('⚠️  Arquivo recipes.json não encontrado');
-    }
-
     console.log('\n✨ Migração concluída com sucesso!');
     console.log(`\n📊 Resumo:`);
-    console.log(`   - Schema: ${SCHEMA}`);
+    console.log(`   - Schema: ${SCHEMA.replace(/"/g, '')}`);
     console.log(`   - Banco: ${process.env.DB_NAME}`);
     console.log(`   - Host: ${process.env.DB_HOST}`);
   } catch (error) {

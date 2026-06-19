@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 
 // Routes
 const productsRoutes = require('./routes/products');
-const recipesRoutes = require('./routes/recipes');
 const authRoutes = require('./routes/auth');
 
 const app = express();
@@ -31,14 +30,13 @@ app.use(express.static(path.join(__dirname)));
 
 // Rotas da API (públicas para leitura, autenticadas para escrita)
 app.use('/api/products', productsRoutes);
-app.use('/api/recipes', recipesRoutes);
 app.use('/api/auth', authRoutes);
 
 // Rota de health check
 app.get('/api/health', (req, res) => {
   res.json({ 
     status: 'ok', 
-    message: 'Flow API está funcionando',
+    message: 'projetflow API está funcionando',
     timestamp: new Date().toISOString()
   });
 });
@@ -55,6 +53,15 @@ app.get('/api/config/google-maps-key', (req, res) => {
 // Rota raiz
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Redirecionar páginas legadas
+app.get('/location.html', (req, res) => {
+  res.redirect('/');
+});
+
+app.get('/receitas.html', (req, res) => {
+  res.redirect('/cardapio.html');
 });
 
 // Rotas para ignorar erros de extensões do navegador
@@ -91,7 +98,7 @@ app.use((err, req, res, next) => {
 
 // Iniciar servidor
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor Flow rodando na porta ${PORT}`);
+  console.log(`🚀 Servidor Projeto Flow rodando na porta ${PORT}`);
   console.log(`📱 Frontend: http://localhost:${PORT}`);
   console.log(`🔧 API: http://localhost:${PORT}/api`);
   console.log(`🔐 Admin: http://localhost:${PORT}/admin.html`);

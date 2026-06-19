@@ -14,7 +14,8 @@ const pool = new Pool({
 });
 
 // Schema padrão
-const SCHEMA = process.env.DB_SCHEMA || 'flow';
+const SCHEMA = `"${process.env.DB_SCHEMA || 'flow'}"`;
+
 
 // Garantir que o schema existe na inicialização
 (async () => {
@@ -22,7 +23,7 @@ const SCHEMA = process.env.DB_SCHEMA || 'flow';
     const client = await pool.connect();
     await client.query(`CREATE SCHEMA IF NOT EXISTS ${SCHEMA}`);
     client.release();
-    console.log(`✅ Schema "${SCHEMA}" garantido no banco ${process.env.DB_NAME}`);
+    console.log(`✅ Schema ${SCHEMA} garantido no banco ${process.env.DB_NAME}`);
   } catch (error) {
     console.error('Erro ao garantir schema:', error);
   }
@@ -39,7 +40,7 @@ const query = async (text, params) => {
   try {
     // Garantir schema antes de cada query
     await pool.query(`CREATE SCHEMA IF NOT EXISTS ${SCHEMA}`);
-    
+
     // Obter cliente do pool
     const client = await pool.connect();
     try {
