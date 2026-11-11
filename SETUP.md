@@ -59,17 +59,17 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=nimu_pwa_db
 DB_USER=postgres
-DB_PASSWORD=***REMOVIDO***
+DB_PASSWORD=<your-local-password>
 DB_SCHEMA=flow
 ```
 
-**Produção (Render.com):**
+**Produção (PostgreSQL gerenciado):** use os valores do provedor. Não grave host, usuário ou senha no repositório.
 ```env
-DB_HOST=***REMOVIDO***
+DB_HOST=<your-db-host>
 DB_PORT=5432
-DB_NAME=nimu_pwa_db
-DB_USER=***REMOVIDO***
-DB_PASSWORD=***REMOVIDO***
+DB_NAME=<your-db-name>
+DB_USER=<your-db-user>
+DB_PASSWORD=<your-db-password>
 DB_SSL=true
 DB_SCHEMA=flow
 ```
