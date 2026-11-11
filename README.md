@@ -1,30 +1,22 @@
 # Projeto Flow
 
-Public website and product inventory for **Projeto Flow**, a wellness brand organized around the METABOLIC method. The site introduces the program, shows a menu, and lets a visitor build a cart and send the order through WhatsApp or Instagram. Staff maintain the catalog from a small admin panel.
+Site do Projeto Flow (método METABOLIC): páginas públicas, cardápio com carrinho e pedido pelo WhatsApp ou Instagram, e painel para cadastrar produtos. A API é Node.js/Express com PostgreSQL no schema `flow`.
 
-This repository is an early sibling of the FitPoint inventory system. Both use Node.js, Express, and a dedicated PostgreSQL schema inside a shared database. The previous README was copied from FitPoint: it described the `fitpoint` schema and a recipes module. This codebase uses the `flow` schema and stores a product catalog only. `GET /receitas.html` redirects to the menu. There is no recipes table and no recipes API.
+## Funcionalidades
 
-## Features
-
-- Marketing pages: home, about, and contact
-- Menu (`cardapio.html`) with categories, tags, prices, and images
-- Browser cart (`localStorage`) that formats an order for WhatsApp or Instagram
-- Static fallback catalog in `data/products.json` when the API is unavailable
-- Admin panel (`admin.html`) with login and create, update, and delete for products
-- REST API: public product reads, JWT-protected writes, login, and a health check
-- Migration script that creates the `flow` schema, the tables, an admin user, and seeds products from JSON
+- Páginas Início, Sobre e Contato
+- Cardápio com categorias, preços e imagens
+- Carrinho no navegador e envio do pedido por WhatsApp ou Instagram
+- Painel admin com login e cadastro de produtos
+- API REST (leitura pública, escrita com JWT) e migração do catálogo
 
 ## Stack
 
-- Node.js and Express 4
-- PostgreSQL via `pg` (default schema `flow`)
-- `jsonwebtoken` and `bcryptjs` for admin auth
-- `dotenv`, `cors`, `body-parser`
-- Static HTML, CSS, and JavaScript; Tailwind and Lucide loaded from CDNs
+Node.js, Express, PostgreSQL (`pg`), JWT (`jsonwebtoken`), bcryptjs e HTML/CSS/JS (Tailwind e Lucide via CDN).
 
-## Run locally
+## Como rodar
 
-Requirements: Node.js 18 or newer, npm, and PostgreSQL 12 or newer.
+É preciso ter Node.js, npm e PostgreSQL. Copie `.env.example` para `.env` e preencha os valores só na sua máquina. Não commite o `.env`.
 
 ```bash
 cp .env.example .env
@@ -33,92 +25,4 @@ npm run migrate
 npm start
 ```
 
-`npm run dev` restarts the server with nodemon.
-
-The app listens on `PORT` (default `3000`).
-
-| URL | What it is |
-| --- | --- |
-| http://localhost:3000 | Home |
-| http://localhost:3000/cardapio.html | Menu and cart |
-| http://localhost:3000/sobre.html | About |
-| http://localhost:3000/contato.html | Contact |
-| http://localhost:3000/admin.html | Admin panel |
-| http://localhost:3000/api/health | Health check |
-| http://localhost:3000/api/products | Product list |
-
-Create the database named in `DB_NAME` before migrating. The server and the migration script default that name to `nimu_pwa_db` and the schema to `flow`. Set `ADMIN_USERNAME` and `ADMIN_PASSWORD` in `.env` before `npm run migrate`. The migration script has built-in defaults when those variables are missing; set them explicitly for any shared or deployed database.
-
-## Environment variables
-
-Copy `.env.example`. Put real values only in `.env` (gitignored). Do not commit hosts, usernames, passwords, or connection strings.
-
-| Variable | Purpose |
-| --- | --- |
-| `PORT` | HTTP port. Default `3000`. |
-| `DB_HOST` | PostgreSQL host. Default `localhost`. |
-| `DB_PORT` | PostgreSQL port. Default `5432`. |
-| `DB_NAME` | Database name. Default `nimu_pwa_db`. |
-| `DB_USER` | Database user. Default `postgres`. |
-| `DB_PASSWORD` | Database password. No default. |
-| `DB_SSL` | Set to `true` for managed PostgreSQL. |
-| `DB_SCHEMA` | Schema name. Default `flow`. |
-| `JWT_SECRET` | Secret used to sign admin tokens. Set a long random value before any shared deployment. |
-| `ADMIN_USERNAME` | Admin user created by the migration. |
-| `ADMIN_PASSWORD` | Password for that admin user. |
-| `CORS_ORIGIN` | Allowed browser origin. Default `*`. |
-| `GOOGLE_MAPS_API_KEY` | Optional. Returned by `GET /api/config/google-maps-key` when set. |
-
-Example local `.env` (placeholders only):
-
-```env
-PORT=3000
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=nimu_pwa_db
-DB_USER=postgres
-DB_PASSWORD=<your-local-password>
-DB_SSL=false
-DB_SCHEMA=flow
-JWT_SECRET=<long-random-string>
-ADMIN_USERNAME=<admin-username>
-ADMIN_PASSWORD=<strong-password>
-CORS_ORIGIN=http://localhost:3000
-```
-
-For a hosted database, replace `DB_HOST`, `DB_NAME`, `DB_USER`, and `DB_PASSWORD` with values from your provider and set `DB_SSL=true`.
-
-## API
-
-Public:
-
-- `GET /api/health`
-- `GET /api/products`
-- `GET /api/products/:id`
-- `POST /api/auth/login` — returns a JWT (24-hour expiry)
-
-Authenticated (`Authorization: Bearer <token>`):
-
-- `POST /api/products`
-- `PUT /api/products/:id`
-- `DELETE /api/products/:id`
-
-`POST /api/auth/register` creates another admin user and is not protected. Treat it as a setup endpoint: do not expose it on a public deployment without adding an authorization check.
-
-## Project layout
-
-```text
-server.js             Express app, static files, API mount
-config/database.js    PostgreSQL pool and schema helper
-config/auth.js        Password hashing and JWT middleware
-routes/products.js    Product CRUD
-routes/auth.js        Login and registration
-scripts/migrate.js    Schema, tables, admin user, product seed
-data/products.json    Seed and offline catalog
-js/                   Menu, cart, admin, and API client
-*.html                Public pages and admin panel
-```
-
-## Resumo
-
-O Projeto Flow é um site público com cardápio, carrinho (pedido via WhatsApp ou Instagram) e um painel administrativo de produtos. O backend é Node.js/Express com PostgreSQL no schema `flow`. É uma versão inicial da mesma linha do FitPoint: o README anterior era uma cópia do FitPoint e não descrevia este repositório. Credenciais ficam só em variáveis de ambiente.
+Abra http://localhost:3000 (admin em `/admin.html`). `npm run dev` recarrega o servidor com nodemon.
