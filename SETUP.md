@@ -75,8 +75,8 @@ DB_SCHEMA=flow
 ```
 
 **Outras configurações:**
-- `JWT_SECRET`: String aleatória segura (ex: gere com `openssl rand -hex 32`)
-- `ADMIN_PASSWORD`: Senha forte para o usuário admin
+- `JWT_SECRET`: obrigatório para o login. Não há segredo embutido no código. Gere com `openssl rand -hex 32`
+- `ADMIN_USERNAME` e `ADMIN_PASSWORD`: obrigatórios na migração. Sem `ADMIN_PASSWORD` o script encerra e não cria usuário. A senha não é impressa no log
 
 ### 4. Instalar Dependências
 

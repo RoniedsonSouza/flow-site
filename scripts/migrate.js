@@ -18,6 +18,15 @@ const SCHEMA = `"${process.env.DB_SCHEMA || 'flow'}"`;
 const PRODUCTS_JSON = path.join(__dirname, '../data/products.json');
 
 async function migrate() {
+  const adminUsername = process.env.ADMIN_USERNAME || 'admin';
+  const adminPassword = process.env.ADMIN_PASSWORD;
+
+  if (!adminPassword || !String(adminPassword).trim()) {
+    console.error('❌ ADMIN_PASSWORD não está definido. Configure a variável de ambiente antes de migrar.');
+    await pool.end();
+    process.exit(1);
+  }
+
   const client = await pool.connect();
   
   try {
@@ -59,10 +68,7 @@ async function migrate() {
 
     console.log('✅ Tabelas criadas no schema\n');
 
-    // Criar usuário admin padrão
-    const adminUsername = process.env.ADMIN_USERNAME || 'admin';
-    const adminPassword = process.env.ADMIN_PASSWORD || '***REMOVIDO***';
-
+    // Criar usuário admin com a senha vinda do ambiente
     const existingAdmin = await client.query(
       `SELECT id FROM ${SCHEMA}.admin_users WHERE username = $1`,
       [adminUsername]
@@ -74,8 +80,8 @@ async function migrate() {
         `INSERT INTO ${SCHEMA}.admin_users (username, password_hash) VALUES ($1, $2)`,
         [adminUsername, passwordHash]
       );
-      console.log(`👤 Usuário admin criado: ${adminUsername} / ${adminPassword}`);
-      console.log('⚠️  ALTERE A SENHA PADRÃO EM PRODUÇÃO!\n');
+      console.log(`👤 Usuário admin criado: ${adminUsername}`);
+      console.log('⚠️  A senha foi lida de ADMIN_PASSWORD e não é exibida.\n');
     } else {
       console.log(`👤 Usuário admin já existe: ${adminUsername}\n`);
     }

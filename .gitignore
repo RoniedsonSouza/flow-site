@@ -9,10 +9,20 @@ node_modules/
 *.log
 npm-debug.log*
 
-# Ambiente
+# Ambiente e segredos locais
 .env
 .env.local
+.env.development
 .env.production
+.env.*.local
+!.env.example
+appsettings.Development.json
+appsettings.*.json
+!appsettings.Example.json
+secrets.json
+credentials.json
+*.pem
+*.key
 
 # OS
 .DS_Store

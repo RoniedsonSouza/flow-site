@@ -1,7 +1,15 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || '***REMOVIDO***';
+function getJwtSecret() {
+  const secret = process.env.JWT_SECRET;
+  if (!secret || !String(secret).trim()) {
+    const error = new Error('JWT_SECRET não configurado');
+    error.code = 'JWT_SECRET_MISSING';
+    throw error;
+  }
+  return secret;
+}
 
 // Middleware para verificar token JWT
 const authenticateToken = (req, res, next) => {
@@ -12,7 +20,15 @@ const authenticateToken = (req, res, next) => {
     return res.status(401).json({ error: 'Token de acesso requerido' });
   }
 
-  jwt.verify(token, JWT_SECRET, (err, user) => {
+  let secret;
+  try {
+    secret = getJwtSecret();
+  } catch (error) {
+    console.error('JWT_SECRET ausente');
+    return res.status(500).json({ error: 'Autenticação indisponível: defina JWT_SECRET' });
+  }
+
+  jwt.verify(token, secret, (err, user) => {
     if (err) {
       return res.status(403).json({ error: 'Token inválido ou expirado' });
     }
@@ -36,7 +52,7 @@ const comparePassword = async (password, hash) => {
 const generateToken = (user) => {
   return jwt.sign(
     { id: user.id, username: user.username },
-    JWT_SECRET,
+    getJwtSecret(),
     { expiresIn: '24h' }
   );
 };
@@ -45,7 +61,6 @@ module.exports = {
   authenticateToken,
   hashPassword,
   comparePassword,
-  generateToken,
-  JWT_SECRET
+  generateToken
 };
 

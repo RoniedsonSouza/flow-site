@@ -44,6 +44,9 @@ router.post('/login', async (req, res) => {
     });
   } catch (error) {
     console.error('Erro no login:', error);
+    if (error.code === 'JWT_SECRET_MISSING') {
+      return res.status(500).json({ error: 'Autenticação indisponível: defina JWT_SECRET' });
+    }
     res.status(500).json({ error: 'Erro ao realizar login' });
   }
 });

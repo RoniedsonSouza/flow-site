@@ -26,3 +26,20 @@ npm start
 ```
 
 Abra http://localhost:3000 (admin em `/admin.html`). `npm run dev` recarrega o servidor com nodemon.
+
+## Variáveis de ambiente
+
+Defina no `.env` (ou no painel do provedor). O arquivo `.env` fica de fora do git.
+
+| Variável | Uso |
+| --- | --- |
+| `PORT` | Porta HTTP. Padrão `3000`. |
+| `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` | Conexão PostgreSQL. A senha não tem padrão no código. |
+| `DB_SSL` | `true` em banco gerenciado. |
+| `DB_SCHEMA` | Schema. Padrão `flow`. |
+| `JWT_SECRET` | Segredo que assina o token do admin. Obrigatório para login. Gere com `openssl rand -hex 32`. |
+| `ADMIN_USERNAME`, `ADMIN_PASSWORD` | Usuário criado por `npm run migrate`. A senha é obrigatória; sem ela a migração para. |
+| `CORS_ORIGIN` | Origem permitida no navegador. |
+| `GOOGLE_MAPS_API_KEY` | Opcional. |
+
+Não grave host, usuário, senha, connection string nem chave de API no repositório.
